@@ -1,29 +1,25 @@
 <!DOCTYPE html>
-{#{% import "bootstrap/wtf.html" as wtf %}#}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Week3</title>
+    <title>Unsafe Index</title>
 </head>
 <body>
 
-
 {% if username %}
-    <h1>Hello {{ username |e }}!</h1>
+    <h1>Hello {{ username | safe }}!</h1>
 {% else %}
     <h1>Oops, no username!</h1>
 {% endif %}
 
-<form method="POST" action="/color_question">
-    {# CSRF Token #}
-    {{ form.csrf_token }}
-    {{ form.color }}
-    <input type="submit" value="submit">
+<form action="\unsafe_color_question" method="POST">
+    <p> Favorite color  <input type="text" name="unsafe_fav_color"/></p>
+    <p><input type="submit" value="submit"/></p>
 </form>
 
 {% if users %}
     {% for user in users %}
-        <p>Username: {{ user[1] | e }} Address: {{ user[2] | e  }} Color: {{ user[3] | e  }} </p>
+        <p>Username: {{ user[1] | safe }} Address: {{ user[2] | safe  }} Color: {{ user[3] | safe  }} </p>
     {% endfor %}
 {% endif %}
 
@@ -31,7 +27,7 @@
     {% if messages %}
         <ul class=flashes>
             {% for message in messages %}
-                <li>{{ message | e }}</li>
+                <li>{{ message | safe }}</li>
             {% endfor %}
         </ul>
     {% endif %}

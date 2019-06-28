@@ -5,9 +5,16 @@
     <title>Show</title>
 </head>
 <body>
-    <div style="background-color: {{ color }};" >
-        <p> {{ username }} thank you for your time </p>
+<div style="background-color: {{ color | e }};">
+    <p> {{ username|e }} thank you for your time </p>
+</div>
 
-    </div>
+<p> Colors chosen by others</p>
+
+{% if users %}
+    {% for user in users %}
+        <p>Username: {{ user[1] | e }} Address: {{ user[2] | e  }} Color: {{ user[3] | e  }} </p>
+    {% endfor %}
+{% endif %}
 </body>
 </html>

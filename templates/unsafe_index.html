@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unsafe Index</title>
+</head>
+<body>
+<form action="\unsafe_index" method="POST">
+    <p> Username <input type="text" name="unsafe_username"/></p>
+    <p> Address <input type="text" name="unsafe_address"/></p>
+    <p><input type="submit" value="submit"/></p>
+</form>
+
+{% if users %}
+    {% for user in users %}
+        <p>Username: {{ user[1] | safe }} Address: {{ user[2] | safe  }} Color: {{ user[3] | safe  }} </p>
+    {% endfor %}
+{% endif %}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class=flashes>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+</body>
+</html>

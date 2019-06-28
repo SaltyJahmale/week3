@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unsafe Index</title>
+</head>
+<body>
+{# NOT ESCAPING #}
+
+<div style="background-color: {{ color | safe }};">
+    <p> {{ username | safe }} thank you for your time </p>
+</div>
+
+<p> Colors chosen by others</p>
+
+{% if users %}
+    {% for user in users %}
+        <p>Username: {{ user[1] | safe }} Address: {{ user[2] | safe  }} Color: {{ user[3] | safe  }} </p>
+    {% endfor %}
+{% endif %}
+</body>
+</html>
