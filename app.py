@@ -104,6 +104,8 @@ def show_thanks():
 
     return render_template('show.html', username=session.get('username'), color=session.get('fav_color'), users=list_of_users)
 
+#####################################################################################################################
+
 @app.route('/unsafe_index', methods=['GET','POST'])
 def unsafe_name_address_form():
     conn = sqlite3.connect('data.db')
